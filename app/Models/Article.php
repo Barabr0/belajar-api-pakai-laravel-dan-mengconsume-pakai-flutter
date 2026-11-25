@@ -6,16 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-     protected $fillable = ['title', 'content', 'image'];
+    protected $fillable = ['title', 'content', 'image'];
 
-     protected $appends = ['image_url'];
+    protected $appends = ['image_url'];
 
-     public function user() {
-        return $this->belongsTo(User::class);
-     }
-
-       public function getImageUrlAttribute(): ?string
+    public function user()
     {
-        return $this->image ? url('api/media/'.$this->image) : null;
+        return $this->belongsTo(User::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ? url('api/media/' . $this->image) : null;
     }
 }
